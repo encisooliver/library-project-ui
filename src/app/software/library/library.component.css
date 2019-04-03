@@ -1,0 +1,53 @@
+.shelves {
+    height: 200px;
+    width: 100%;
+    float: center;
+    border: 1px solid #254061;
+    border-radius: 3px;
+    /* margin: 40px 40px 0 0 ; */
+    box-shadow: 3px 3px #254061;
+    text-align: center;
+    padding-top: 50px;
+    
+}
+.shelves:hover {
+    background-color: #254061;
+}
+h5 {
+    color: aliceblue;
+    font-weight: 400;
+}
+
+.container {
+    padding-top: 30px;
+}
+
+.row {
+    margin: 30px;
+}
+/* shelves color */
+.green {
+    background-color: #77933c;
+}
+.red {
+    background-color: #e51625;
+}
+.aqua-blue {
+    background-color: #16d9e5;
+}
+.yellow {
+    background-color: #cfe516;
+}
+
+.blue {
+    background-color: #78beff;
+}
+
+.general {
+    background-color: #ee78ff;
+}
+
+.icon {
+    height: 80px;
+    width: 80px;
+}

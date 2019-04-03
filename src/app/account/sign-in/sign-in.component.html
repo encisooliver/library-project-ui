@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <a routerLink="/home">
+                        <img src="../../assets/image/cec-logo.jpg" style="height: 50px;" />
+                    </a>
+                    <br />
+                    <br />
+                    <h6> Sign-in to CEC Library </h6>
+                <form>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input id="inpUsername" [(ngModel)]="loginModel.UserName" type="text" class="form-control" [ngModelOptions]="{standalone: true}">
+                        <small class="text-danger" [class.d-none]="loginForm.get('userName').valid || loginForm.get('userName').untouched">Username is required.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input id="inpPassword" [(ngModel)]="loginModel.Password" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
+                        <!-- <small class="text-danger" [class.d-none]="loginForm.get('password').valid || loginForm.get('password').untouched">Password is required.</small> -->
+                    </div>
+                    <a id="linkto" routerLink="/sign-up">Create an account</a>
+                    <button id="btnLogin" class="btn btn-primary" (click)="login()" >Register</button>
+                </form>
+            </div>
+        </div>
+                            
+            <br />
+            <p class="text-center" style="color: gray; font-size: 12px;">
+                Copyright © 2018 - LCEC
+            </p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

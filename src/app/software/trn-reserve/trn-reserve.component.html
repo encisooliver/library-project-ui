@@ -1,0 +1,279 @@
+<div class="container">
+    <div class="row">
+        <!-- New Card -->
+        <div class="card card-default trasaction-card" style="margin-top: 10px;">
+            <div class="card-header trasaction">
+              <div class="row">
+                <div class="col-md-5">
+                    <table id="trasaction-form" >
+                        <tr>
+                          <td>
+                              <ul style="list-style-type:none;">
+                                  <li>
+                                  <tr>
+                                      <td style="text-align:right">
+                                          <label>Return No.</label>
+                                      </td>
+                                      <td>
+                                          <input type="text" class="form-control">
+                                      </td>
+                                  </tr>
+                                  </li>
+                                  <li>
+                                  <tr>
+                                      <td style="text-align:right">
+                                          <label>Manual Return No.</label>
+                                      </td>
+                                      <td>
+                                          <input type="text" class="form-control">
+                                      </td>
+                                  </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right">
+                                              <label>Return Date </label>
+                                          </td>
+                                          <td>
+                                              <input type="text" class="form-control">
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right">
+                                              <label>Borrower Id </label>
+                                          </td>
+                                          <td>
+                                            <wj-input-date #cboCopyRightDate class="input-trnwijmodate" format="MM-dd-yyyy" style="margin-left: 10px;">
+                                            </wj-input-date>
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right">
+                                              <label>Prepared By User </label>
+                                          </td>
+                                          <td>
+                                            <wj-input-date #cboCopyRightDate class="input-trnwijmodate" format="MM-dd-yyyy" style="margin-left: 10px;">
+                                            </wj-input-date>
+                                          </td>
+                                      </tr>
+                                  </li>
+                                </ul>
+                          </td>
+                        </tr>
+                        
+                      </table>
+                </div>
+                <div class="col-md-5">
+                    <table id="trasaction-form" >
+                        <tr>
+                          <td>
+                              <ul style="list-style-type:none;">
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right">
+                                              <label>Created By UserId </label>
+                                          </td>
+                                          <td>
+                                              <input type="text" class="form-control">
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right;">
+                                              <label>CreatedDate </label>
+                                          </td>
+                                          <td>
+                                            <wj-input-date #cboCopyRightDate class="input-trnwijmodate" format="MM-dd-yyyy" style="margin-left: 10px;">
+                                            </wj-input-date>
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right;">
+                                              <label>UpdatedByUserId </label>
+                                          </td>
+                                          <td>
+                                              <input type="text" class="form-control">
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  <li>
+                                      <tr>
+                                          <td style="text-align:right;">
+                                              <label>UpdatedDate </label>
+                                          </td>
+                                          <td>
+                                            <wj-input-date #cboCopyRightDate class="input-trnwijmodate" format="MM-dd-yyyy" style=" margin-left: 10px;">
+                                            </wj-input-date>
+                                          </td>
+                                      </tr>
+                                  </li>
+                                  
+                                </ul>
+                          </td>
+                        </tr>
+                        
+                      </table>
+                </div>
+                <div class="col-md-2"></div>
+              </div>  
+            </div>
+            
+        </div>
+        
+        
+        <!-- New Card -->
+        <div class="card card-default" style="margin-top: 10px;">
+          <div class="card-header">
+            <table>
+              <tr>
+                <td id="td1">
+                  <h4>Reserve Books</h4>
+                </td>
+                <td id="td2">
+                    <button type="button" class="btn btn-primary btn-block btn-xs" (click)="btnAddBookModalClick(addBookModalTemplate, true)"
+                    id="btnAdd">
+                    Add
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card-body">
+            <wj-flex-grid #bookListFlexGrid [itemsSource]="listBookCollectionView" [selectionMode]="3" [frozenColumns]="2">
+              <wj-flex-grid-filter></wj-flex-grid-filter>
+              <wj-flex-grid-column [header]="'Edit'" [isReadOnly]="true" [width]="'0.5*'">
+                <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+                  <button [hidden]="isEditButtonHide" type="button" class="btn btn-primary btn-block btn-xs"
+                    (click)="btnDetailBookModalClick(detailBookModalTemplate, true)" id="btnEditBook">
+  
+                    <i class="fa fa-edit"></i>
+                    Edit
+                  </button>
+                </ng-template>
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'Delete'" [isReadOnly]="true" [width]="'0.5*'">
+                <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+                  <button type="button" class="btn btn-danger btn-block btn-xs"
+                    (click)="btnDeleteBookModalClick(deleteBookModalTemplate, true)" id="btnDeleteBook">
+                    <i class="fa fa-trash"></i>
+                    Delete
+                  </button>
+                </ng-template>
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'Book No.'" [binding]="'BookNumber'" [isReadOnly]="true" [width]="'0.5*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'Title'" [binding]="'Title'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'Author'" [binding]="'Author'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'AccessionNumber'" [binding]="'AccessionNumber'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'PlaceBorrowed'" [binding]="'PlaceBorrowed'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'DateBorrowed'" [binding]="'CopyRightDate'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'DateReturn'" [binding]="'DateReturn'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'Status'" [binding]="'Status'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              <wj-flex-grid-column [header]="'PraperedBy'" [binding]="'PraperedBy'" [isReadOnly]="true" [width]="'1*'">
+              </wj-flex-grid-column>
+              
+            </wj-flex-grid>
+          </div>
+          <!-- Navigation flexgrid -->
+          <div class="card-footer">
+            <div class="col-sm-12 btn-group" style="padding: 5px 0px 5px 0px;">
+              <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToFirstPage()">
+                <i class="fa fa-caret-left"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToPreviousPage()">
+                <i class="fa fa-caret-left"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" disabled style="width:100px">
+                <!-- {{ listBookCollectionView.pageIndex +1 }} / {{ listBookCollectionView.pageCount }} -->
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToNextPage()">
+                <i class="fa fa-caret-right"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToLastPage()">
+                <i class="fa fa-caret-right"></i>
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+      <!-- Trn Borrow modal -->
+    <ng-template #transactionModalTemplate>
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Add User
+          </h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-1"></div>
+              <div class="col-sm-11">
+                  <form class="form-inline" #UserForm="ngForm">
+                      <label for="email">BorrowNumber</label>
+                      <input type="text" class="form-control">
+                      <label for="email">ManualBorrowNumber</label>
+                      <input type="text" class="form-control" >
+                      <label for="email">BorrowerId</label>
+                      <input type="text" class="form-control" >
+                      <label for="email">LibraryCardId</label>
+                      <input type="text" class="form-control" >
+  
+                      <label for="email">Location</label>
+                      <input type="text" class="form-control" >
+  
+  
+  
+                      <label for="email">BorrowDate</label>
+                      <wj-input-date #cboCopyRightDate format="MM-dd-yyyy" style="width: 70%; margin-left: 5px;">
+                      </wj-input-date>
+  
+                      <label for="email">DateReturn</label>
+                      <wj-input-date #cboCopyRightDate  
+                        format="MM-dd-yyyy" style="width: 70%; margin-left: 5px;">
+                      </wj-input-date>
+                      <label for="email">PreparedByUser</label>
+                      <input type="text" class="form-control">
+                      <label for="email">Location</label>
+                      <wj-input-date #cboCopyRightDate 
+                        format="MM-dd-yyyy" style="width: 70%; margin-left: 5px;">
+                      </wj-input-date>
+                      <label for="email">PreparedByUser</label>
+                      <input type="text" class="form-control">
+                      <wj-combo-box #cboUserId 
+                        [itemsSource]="cboUserIdObservableArray" [displayMemberPath]="'UserType'"  
+                        [selectedValuePath]="'Id'" style="width: 205px; padding: 3px; margin-left: 420px;">
+                      </wj-combo-box>
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnTrnBorrowSaveClick()"
+            id="btnSaveBook">
+            <!-- <fa name="trash"></fa> -->
+            Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="detailBookModalRef.hide()" id="btnCloseBookDetialModal">
+            <!-- <fa name="close"></fa> -->
+            Cancel
+          </button>
+        </div>
+      </ng-template>
+  
+    

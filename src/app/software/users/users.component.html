@@ -1,0 +1,199 @@
+<div class="container">
+  <div class="row">
+    <!-- Header -->
+    <div class="card card-default" style="margin-top: 10px;">
+      <div class="card-header">
+        <table>
+          <tr>
+            <td id="td1">
+              <h4>User</h4>
+            </td>
+            <td id="td2">
+              <button type="button" class="btn btn-primary btn-block btn-xs"
+                (click)="btnAddUserModalClick(addUserModalTemplate, true)" id="btnAdd">
+                <!-- <fa name="edit"></fa>  -->
+                Add
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-body">
+        <wj-flex-grid #listUserFlexGrid [itemsSource]="listUserCollectionView" [selectionMode]="3" [frozenColumns]="2">
+          <wj-flex-grid-filter></wj-flex-grid-filter>
+          <wj-flex-grid-column [header]="'Edit'" [isReadOnly]="true" [width]="'0.5*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+              <button [hidden]="isEditButtonHide" type="button" class="btn btn-primary btn-block btn-xs"
+                (click)="btnDetailUserModalClick(detailUserModalTemplate, true)" id="btnEditShopOrder">
+
+                <i class="fa fa-edit"></i>
+                Edit
+              </button>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Delete'" [isReadOnly]="true" [width]="'0.5*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+              <button type="button" class="btn btn-danger btn-block btn-xs"
+                (click)="btnDeleteUserModalClick(deleteUserModalTemplate, true)" id="btnDeleteShopOrder">
+                <i class="fa fa-trash"></i>
+                Delete
+              </button>
+            </ng-template>
+          </wj-flex-grid-column>
+          <!-- <wj-flex-grid-column [header]="'Id'" [binding]="'Id'" [isReadOnly]="true" [width]="'0.5*'"></wj-flex-grid-column> -->
+          <wj-flex-grid-column [header]="'Username'" [binding]="'UserName'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Firstname'" [binding]="'FirstName'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Lastname'" [binding]="'LastName'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Email'" [binding]="'Email'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Password'" [binding]="'Password'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'UserType Id'" [binding]="'UserTypeId'" [isReadOnly]="true" [width]="'.5*'">
+          </wj-flex-grid-column>
+        </wj-flex-grid>
+      </div>
+      <!-- Navigation flexgrid -->
+      <div class="card-footer">
+        <div class="col-sm-12 btn-group" style="padding: 5px 0px 5px 0px;">
+          <button type="button" class="btn btn-secondary" (click)="listUserCollectionView.moveToFirstPage()">
+            <i class="fa fa-caret-left"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listUserCollectionView.moveToPreviousPage()">
+            <i class="fa fa-caret-left"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" disabled style="width:100px">
+            {{ listUserCollectionView.pageIndex + 1 }} / {{ listUserCollectionView.pageCount }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listUserCollectionView.moveToNextPage()">
+            <i class="fa fa-caret-right"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listUserCollectionView.moveToLastPage()">
+            <i class="fa fa-caret-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add User modal -->
+  <ng-template #addUserModalTemplate>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        Add User
+      </h5>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11">
+            <form class="form-inline" #UserForm="ngForm">
+              <label for="email">Username</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.UserName" name="username">
+              <label for="email">Firstname</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.FirstName" name="firstname">
+              <label for="email">Lastname</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.LastName" name="lastname">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" [(ngModel)]="userModel.Email" name="email">
+              <label for="email">Password</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.Password" name="password">
+              <label for="email">User Type</label>
+              <wj-combo-box #cboUserTypeList [itemsSource]="cboUserTypeListObservableArray"
+                [displayMemberPath]="'UserType'" [(ngModel)]="userModel.UserTypeId" name="usertype"
+                [selectedValuePath]="'Id'" style="width: 205px; padding: 3px;">
+              </wj-combo-box>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnSaveUserOnClick()"
+        id="btnAddUser">
+        <!-- <fa name="trash"></fa> -->
+        Save
+      </button>
+      <button type="button" class="btn btn-danger" (click)="addUserModalRef.hide()" id="btnCloseDetailUserModal">
+        <!-- <fa name="close"></fa> -->
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Detail User modal -->
+  <ng-template #detailUserModalTemplate>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        Add User
+      </h5>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11">
+            <form class="form-inline" #UserForm="ngForm">
+              <label >Username</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.UserName" name="username">
+              <label >Firstname</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.FirstName" name="firstname">
+              <label >Lastname</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.LastName" name="lastname">
+              <label >Email</label>
+              <input type="email" class="form-control" [(ngModel)]="userModel.Email" name="email">
+              <label>Password</label>
+              <input type="text" class="form-control" [(ngModel)]="userModel.Password" name="password">
+              <label >User Type</label>
+              <wj-combo-box #cboShopOrderItem [itemsSource]="cboUserTypeListObservableArray"
+                [displayMemberPath]="'UserType'" [(ngModel)]="userModel.UserTypeId" name="usertype"
+                [selectedValuePath]="'Id'" style="width: 205px; padding: 3px;">
+              </wj-combo-box>
+            </form>
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnUpdateUserClick()"
+        id="btnAddUser">
+        <!-- <fa name="trash"></fa> -->
+        Save
+      </button>
+      <button type="button" class="btn btn-danger" (click)="detailUserModalRef.hide()" id="btnCloseAddUserModal">
+        <!-- <fa name="close"></fa> -->
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #deleteUserModalTemplate>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        Delete
+      </h5>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-11">
+            <p>Are you sure you want to delete this user?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnDeleteUserClick()"
+        id="btnDeleteUser">
+        Delete
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteUserModalRef.hide()" id="btnCloseDeleteUserModal">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,60 @@
+
+<div class="nav-side-menu">
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li class="active" routerLinkActive="active">
+                  <a href="#" routerLink="/software">
+                    <img src="../../../assets/image/dashboard.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                    Dashboard
+                  </a>
+                </li>
+                <li data-toggle="collapse" data-target="#new" class="collapsed" routerLink="/software/library">
+                  <a href="#" >
+                    <img src="../../../assets/image/books-library.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                     Library
+                  </a>
+                </li>
+                <li data-toggle="collapse" data-target="#new" class="collapsed" routerLink="/software/book">
+                  <a href="#" >
+                    <img src="../../../assets/image/books.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                     Book
+                  </a>
+                </li>
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="#">
+                      <img src="../../../assets/image/open-book.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                      <!-- <i class="fa fa-shopping-cart"></i>  -->
+                      Transactions <span class="arrow"></span></a>
+                </li>  
+                <ul class="sub-menu collapse" id="service">
+                  <li class="li-cart" routerLink="/software/trn-borrow-in">Borrow In</li>
+                  <li class="li-cart" routerLink="/software/trn-borrow-out">Borrow Out</li>
+                  <li class="li-cart" routerLink="/software/trn-reserve">Reserve</li>
+                </ul>
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                  
+                  <a href="#">
+                    <img src="../../../assets/image/report.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                    <!-- <i class="fa fa-file-text-o"></i>  -->
+                    Reports </a>
+                </li>
+                 <li>
+                  <a href="#">
+                  <img src="../../../assets/image/user.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                  <!-- <i class="fa fa-user fa-lg"></i> -->
+                   Profile
+                  </a>
+                  </li>
+                 <li routerLink="/software/user"> 
+                  <a href="#" >
+                      <img src="../../../assets/image/users.png" style="height: 14px; width: 14px; margin: 0 5px 0 10px;" alt="">
+                  <!-- <i class="fa fa-users fa-lg"></i> -->
+                   Users
+                  </a>
+                </li>
+            </ul>
+     </div>
+</div>

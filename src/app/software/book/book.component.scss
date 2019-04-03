@@ -1,0 +1,55 @@
+.card {
+    .card-header{
+        table {
+            margin-bottom: -15px;
+            width: 100%;
+            tr {
+                #td1 {
+                    width: 80%;
+                    padding: 0 10px 10px 10px;
+                }
+                #td2 {
+                    width: 20%;
+                    button {
+                        width: 40%;
+                        float: right;
+                        margin-top: -15px;
+                    }
+                   
+                }
+            }
+        }
+    }
+}
+.modal-body {
+    .container {
+        .row {
+                form {
+                    label {
+                        width: 140px;
+                        margin: 5px;
+                        display:block; 
+                        width:x; height:y; 
+                        // text-align: justify;
+                    }
+                    input {
+                        width: 70%;
+                        margin: 5px;
+                    }
+                   
+                }
+        }
+    }
+}
+
+#btnEditBook, #btnDeleteBook {
+    height: 25px;
+    font-size: 9px;
+}
+ 
+
+
+
+
+
+

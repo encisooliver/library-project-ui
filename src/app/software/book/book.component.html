@@ -1,0 +1,207 @@
+<div class="container">
+  <div class="row">
+    <!-- Header -->
+    <div class="card card-default" style="margin-top: 10px;">
+      <div class="card-header">
+        <table>
+          <tr>
+            <td id="td1">
+              <h4>Book</h4>
+            </td>
+            <td id="td2">
+                <button type="button" class="btn btn-primary btn-block btn-xs" (click)="btnAddBookModalClick(addBookModalTemplate, true)"
+                id="btnAdd">
+                <!-- <fa name="edit"></fa>  -->
+                Add
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-body">
+        <wj-flex-grid #bookListFlexGrid [itemsSource]="listBookCollectionView" [selectionMode]="3" [frozenColumns]="2">
+          <wj-flex-grid-filter></wj-flex-grid-filter>
+          <wj-flex-grid-column [header]="'Edit'" [isReadOnly]="true" [width]="'0.5*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+              <button [hidden]="isEditButtonHide" type="button" class="btn btn-primary btn-block btn-xs"
+                (click)="btnDetailBookModalClick(detailBookModalTemplate, true)" id="btnEditBook">
+
+                <i class="fa fa-edit"></i>
+                Edit
+              </button>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Delete'" [isReadOnly]="true" [width]="'0.5*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'">
+              <button type="button" class="btn btn-danger btn-block btn-xs"
+                (click)="btnDeleteBookModalClick(deleteBookModalTemplate, true)" id="btnDeleteBook">
+                <i class="fa fa-trash"></i>
+                Delete
+              </button>
+            </ng-template>
+          </wj-flex-grid-column>
+          <!-- <wj-flex-grid-column [header]="'Id'" [binding]="'Id'" [isReadOnly]="true" [width]="'0.5*'"></wj-flex-grid-column> -->
+          <wj-flex-grid-column [header]="'Book No.'" [binding]="'BookNumber'" [isReadOnly]="true" [width]="'0.5*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Title'" [binding]="'Title'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Author'" [binding]="'Title'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'Edition No.'" [binding]="'EditionNumber'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'PlaceOfPublication'" [binding]="'PlaceOfPublication'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'CopyRightDate'" [binding]="'CopyRightDate'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+        </wj-flex-grid>
+      </div>
+      <!-- Navigation flexgrid -->
+      <div class="card-footer">
+        <div class="col-sm-12 btn-group" style="padding: 5px 0px 5px 0px;">
+          <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToFirstPage()">
+            <i class="fa fa-caret-left"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToPreviousPage()">
+            <i class="fa fa-caret-left"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" disabled style="width:100px">
+            {{ listBookCollectionView.pageIndex +1 }} / {{ listBookCollectionView.pageCount }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToNextPage()">
+            <i class="fa fa-caret-right"></i>
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="listBookCollectionView.moveToLastPage()">
+            <i class="fa fa-caret-right"></i>
+          </button>
+      </div>
+    </div>
+    <ng-template #addBookModalTemplate>
+      <div class="modal-header">
+        <h5 class="modal-title">
+         Add Book
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
+                <form class="form-inline" #UserForm="ngForm">
+                    <label for="email">Book No.</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.BookNumber" [ngModelOptions]="{standalone: true}">
+                    <label for="email">Title</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.Title" [ngModelOptions]="{standalone: true}">
+                    <label for="email">Author</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.Author" [ngModelOptions]="{standalone: true}">
+                    <label for="email">Edition No.</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.EditionNumber" [ngModelOptions]="{standalone: true}">
+                    <label for="email">Place of Publication</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.PlaceOfPublication" [ngModelOptions]="{standalone: true}">
+                    <label for="email">Copy Right Date</label>
+                    <wj-input-date #cboCopyRightDate [(ngModel)]="bookModel.CopyRightDate" [ngModelOptions]="{standalone: true}"
+                      format="MM-dd-yyyy" style="width: 70%; margin-left: 5px;">
+                    </wj-input-date>
+                    <label for="email">ISBN</label>
+                    <input type="text" class="form-control" [(ngModel)]="bookModel.ISBN" [ngModelOptions]="{standalone: true}">
+                    <wj-combo-box #cboUserId 
+                      [itemsSource]="cboUserIdObservableArray" [displayMemberPath]="'UserType'" [(ngModel)]="bookModel.UserId" [ngModelOptions]="{standalone: true}"
+                      [selectedValuePath]="'Id'" style="width: 205px; padding: 3px; margin-left: 420px;">
+                    </wj-combo-box>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnSaveBookOnClick()"
+          id="btnAddUser">
+          <!-- <fa name="trash"></fa> -->
+           Save
+        </button>
+        <button type="button" class="btn btn-danger" (click)="addBookModalRef.hide()" id="btnCloseAddBookModal">
+          <!-- <fa name="close"></fa> -->
+           Cancel
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Detail Book modal -->
+  <ng-template #detailBookModalTemplate>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        Add User
+      </h5>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1"></div> 
+          <div class="col-sm-11">
+              <form class="form-inline" #UserForm="ngForm">
+                  <label for="email">Book No.</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.BookNumber" [ngModelOptions]="{standalone: true}">
+                  <label for="email">Title</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.Title" [ngModelOptions]="{standalone: true}">
+                  <label for="email">Author</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.Author" [ngModelOptions]="{standalone: true}">
+                  <label for="email">Edition No.</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.EditionNumber" [ngModelOptions]="{standalone: true}">
+                  <label for="email">Place of Publication</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.PlaceOfPublication" [ngModelOptions]="{standalone: true}">
+                  <label for="email">Copy Right Date</label>
+                  <wj-input-date #cboCopyRightDate [(ngModel)]="bookModel.CopyRightDate" [ngModelOptions]="{standalone: true}"
+                    format="MM-dd-yyyy" style="width: 70%; margin-left: 5px;">
+                  </wj-input-date>
+                  <label for="email">ISBN</label>
+                  <input type="text" class="form-control" [(ngModel)]="bookModel.ISBN" [ngModelOptions]="{standalone: true}">
+                  <wj-combo-box #cboUserId 
+                    [itemsSource]="cboUserIdObservableArray" [displayMemberPath]="'UserType'" [(ngModel)]="bookModel.UserId" [ngModelOptions]="{standalone: true}"
+                    [selectedValuePath]="'Id'" style="width: 205px; padding: 3px; margin-left: 420px;">
+                  </wj-combo-box>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnUpdateBookClick()"
+        id="btnSaveBook">
+        <!-- <fa name="trash"></fa> -->
+        Save
+      </button>
+      <button type="button" class="btn btn-danger" (click)="detailBookModalRef.hide()" id="btnCloseBookDetialModal">
+        <!-- <fa name="close"></fa> -->
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Delete Modal -->
+  <ng-template #deleteBookModalTemplate>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        Delete
+      </h5>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-11">
+            <p>Are you sure you want to delete this user?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="btnDeleteBookClick()"
+        id="btnDeleteUser">
+        Delete
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteBookModalRef.hide()" id="btnCloseDeleteUserModal">
+        Cancel
+      </button>
+    </div>
+  </ng-template>
+</div>
