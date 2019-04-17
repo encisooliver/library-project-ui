@@ -14,7 +14,7 @@ export class AccountService {
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Authorizaiton': 'Bearer' + localStorage.getItem('acces_token')
+      'Authorizaiton': 'Bearer ' + localStorage.getItem('access_token')
     })
   };
   
@@ -24,11 +24,6 @@ export class AccountService {
   public loginObservable = this.loginSource.asObservable();
   public registerSource = new Subject<string[]>();
   public registerObservable = this.registerSource.asObservable();
-
-  
-  
-  
-  
 
   constructor(
     private router: Router, 
@@ -69,6 +64,7 @@ export class AccountService {
           console.log(response);
   
           this.loginSource.next([true, "Login Successful."]);
+          
         },
         error => {
           this.loginSource.next([false, error["error"].error_description]);

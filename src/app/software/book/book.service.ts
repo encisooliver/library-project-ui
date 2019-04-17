@@ -20,7 +20,7 @@ export class BookService {
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      //'Authorizaiton': 'Bearer' + localStorage.getItem('acces_token')
+      'Authorization': 'Bearer ' + localStorage.getItem('access_token')
     })
   };
 
@@ -38,7 +38,7 @@ export class BookService {
 
   // Book - Add
   public addBook(objNewBook: BookModel): void {
-    this.httpClient.post(this.defaultAPIHostURL + "/api/library/book/add", JSON.stringify(objNewBook), this.options).subscribe(
+    this.httpClient.post(this.defaultAPIHostURL + "/api/Library/Book/Add", JSON.stringify(objNewBook), this.options).subscribe(
       response => {
         let responseResults: string[] = ["success", "Add succeccful"];
         this.bookAddSource.next(responseResults);
@@ -57,7 +57,7 @@ export class BookService {
     let listBookObservableArray = new ObservableArray();
     this.bookListSource.next(listBookObservableArray);
 
-    this.httpClient.get(this.defaultAPIHostURL + "/api/library/book/list", this.options).subscribe(
+    this.httpClient.get(this.defaultAPIHostURL + "/api/Library/Book/List", this.options).subscribe(
       response => {
         var results = response;
         if(results["length"] > 0){
@@ -71,7 +71,12 @@ export class BookService {
               PlaceOfPublication: results[i].PlaceOfPublication,
               CopyRightDate: results[i].CopyRightDate,
               ISBN: results[i].ISBN,
-              UserId: results[i].UserId
+              CreatedByUserId: results[i].CreatedByUserId,
+              CreatedBy: results[i].CreatedBy,
+              CreatedDate: results[i].CreatedDate,
+              UpdatedByUserId: results[i].UpdatedByUserId,
+              UpdatedBy: results[i].UpdatedBy,
+              UpdatedDate: results[i].UpdatedDate
             });
           }
           this.bookListSource.next(listBookObservableArray);
@@ -79,9 +84,10 @@ export class BookService {
       }
     );
   }
+
 // Update Book
   public detailBook(objUpdateBook: BookModel, id: number): void {
-    this.httpClient.put(this.defaultAPIHostURL + "/api/library/book/update/" + id, JSON.stringify(objUpdateBook), this.options).subscribe(
+    this.httpClient.put(this.defaultAPIHostURL + "/api/Library/Book/Update/" + id, JSON.stringify(objUpdateBook), this.options).subscribe(
       response => {
         let responseResults: string[] = ["success", ""];
         this.bookDetailSource.next(responseResults);
@@ -97,7 +103,7 @@ export class BookService {
 
   // Delete Book
   public deleteBook(id: number): void {
-    this.httpClient.delete(this.defaultAPIHostURL + "/api/library/book/delete/" + id, this.options).subscribe(
+    this.httpClient.delete(this.defaultAPIHostURL + "/api/Library/Book/Delete/" + id, this.options).subscribe(
       response => {
         let responseResults: string[] = ["success", ""];
         this.bookDeleteSource.next(responseResults);

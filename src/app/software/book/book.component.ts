@@ -49,7 +49,7 @@ export class BookComponent implements OnInit {
   public isEditClicked: boolean = false;
 
   public bookModel: BookModel = {
-    //Id: 0,
+    Id: 0,
     BookNumber: 0,
     Title: "",
     Author: "",
@@ -57,7 +57,12 @@ export class BookComponent implements OnInit {
     PlaceOfPublication: "",
     CopyRightDate: new Date(),
     ISBN: "",
-    UserId: 0
+    CreatedByUserId: 0,
+    CreatedBy: "",
+    CreatedDate: new Date(),
+    UpdatedByUserId: 0,
+    UpdatedBy: "",
+    UpdatedDate: new Date(),
   }
 
   
@@ -70,7 +75,7 @@ export class BookComponent implements OnInit {
   }
 
   public btnSaveBookOnClick(): void {
-    if(this.bookModel.UserId !== 0 && this.bookModel.BookNumber !== 0 && this.bookModel.Author !== "" && this.bookModel.Title !== ""
+    if(this.bookModel.BookNumber !== 0 && this.bookModel.Author !== "" && this.bookModel.Title !== ""
       || this.bookModel.EditionNumber !== "" && this.bookModel.CopyRightDate !== null && this.bookModel.PlaceOfPublication !== "") {
       this.bookService.addBook(this.bookModel);
 
@@ -166,7 +171,6 @@ export class BookComponent implements OnInit {
       this.bookModel.CopyRightDate = currentBook.CopyRightDate;
       this.bookModel.PlaceOfPublication = currentBook.PlaceOfPublication;
       this.bookModel.ISBN = currentBook.ISBN;
-      this.bookModel.UserId = currentBook.UserId;
       
       
       this.isEditClicked = false;

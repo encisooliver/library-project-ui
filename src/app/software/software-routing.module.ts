@@ -8,21 +8,22 @@ import { LibraryComponent } from './library/library.component';
 import { TrnBorrowOutComponent } from './trn-borrow-out/trn-borrow-out.component';
 import { TrnBorrowInComponent } from './trn-borrow-in/trn-borrow-in.component';
 import { TrnReserveComponent } from './trn-reserve/trn-reserve.component';
-import { AppRouterActivate } from '../app.router.active';
+
+import { SoftwareRouterActivate } from './software.router.activate';
 
 
 
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent,
+    path: '', component: LayoutComponent, canActivate: [SoftwareRouterActivate],
     children: [
-      { path: 'user', component: UsersComponent },
-      { path: 'book', component: BookComponent },
-      { path: 'sidenav', component: SidenavComponent },
-      { path: 'library', component: LibraryComponent, },
-      { path: 'trn-borrow-in', component: TrnBorrowInComponent },
-      { path: 'trn-borrow-out', component: TrnBorrowOutComponent },
-      { path: 'trn-reserve', component: TrnReserveComponent }
+      { path: 'user', component: UsersComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'book', component: BookComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'sidenav', component: SidenavComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'library', component: LibraryComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'trn-borrow-in', component: TrnBorrowInComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'trn-borrow-out', component: TrnBorrowOutComponent, canActivate: [SoftwareRouterActivate] },
+      { path: 'trn-reserve', component: TrnReserveComponent, canActivate: [SoftwareRouterActivate] }
     ]
   }
 ];

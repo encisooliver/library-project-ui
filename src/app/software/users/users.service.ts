@@ -19,7 +19,7 @@ export class UserService {
   private options = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      //'Authorizaiton': 'Bearer' + localStorage.getItem('acces_token')
+      'Authorization': 'Bearer ' + localStorage.getItem('access_token')
     })
   };
 
@@ -59,10 +59,12 @@ export class UserService {
 
   // List user group
   public listUserService(): void {
+    console.log(this.options);
+
     let userListObservableArray = new ObservableArray();
     this.userListSource.next(userListObservableArray);
 
-    this.httpClient.get(this.defaultAPIHostURL + "/api/library/user/list", this.options).subscribe(
+    this.httpClient.get(this.defaultAPIHostURL + "/api/Library/User/List", this.options).subscribe(
       response => {
         var results = response;
         if (results["length"] > 0) {
@@ -88,7 +90,7 @@ export class UserService {
     let userTypeListObservableArray = new ObservableArray();
     this.userTypeListSource.next(userTypeListObservableArray);
 
-    this.httpClient.get(this.defaultAPIHostURL + "/api/user/UserType", this.options).subscribe(
+    this.httpClient.get(this.defaultAPIHostURL + "/api/Library/User/UserType", this.options).subscribe(
       response => {
         var results = response;
         if(results["length"] > 0) {
@@ -120,7 +122,7 @@ export class UserService {
 
   // Detail user
   public detailUser(objUpdateUser: UserModel, id: number): void {
-    this.httpClient.put(this.defaultAPIHostURL + "/api/user/update/" + id, JSON.stringify(objUpdateUser), this.options).subscribe(
+    this.httpClient.put(this.defaultAPIHostURL + "/api/Library/User/Update/" + id, JSON.stringify(objUpdateUser), this.options).subscribe(
       response => {
         let responseResults: string[] = ["success", ""];
         this.userDetailSource.next(responseResults);

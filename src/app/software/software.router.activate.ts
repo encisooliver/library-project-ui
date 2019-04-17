@@ -3,18 +3,18 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from "@angular/router";
 
 @Injectable()
-export class AppRouterActivate implements CanActivate {
+export class SoftwareRouterActivate implements CanActivate {
   constructor(
     private router: Router
   ) { }
 
   canActivate() {
-    if (localStorage.getItem("access_token") != null) {
-      this.router.navigate(["/software"]);
-      
+    if (localStorage.getItem("access_token") == null) {
+      this.router.navigate(["/account/login"]);
+
       return false;
     } else {
       return true;
-    }
+    }  
   }
-} 
+}

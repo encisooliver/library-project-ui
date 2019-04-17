@@ -53,6 +53,16 @@
           </wj-flex-grid-column>
           <wj-flex-grid-column [header]="'CopyRightDate'" [binding]="'CopyRightDate'" [isReadOnly]="true" [width]="'1*'">
           </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'ISBN'" [binding]="'ISBN'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'CreatedBy'" [binding]="'CreatedBy'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'CreatedDate'" [binding]="'CreatedDate'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'UpdatedBy'" [binding]="'UpdatedBy'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'UpdatedDate'" [binding]="'UpdatedDate'" [isReadOnly]="true" [width]="'1*'">
+          </wj-flex-grid-column>
         </wj-flex-grid>
       </div>
       <!-- Navigation flexgrid -->
@@ -103,10 +113,7 @@
                     </wj-input-date>
                     <label for="email">ISBN</label>
                     <input type="text" class="form-control" [(ngModel)]="bookModel.ISBN" [ngModelOptions]="{standalone: true}">
-                    <wj-combo-box #cboUserId 
-                      [itemsSource]="cboUserIdObservableArray" [displayMemberPath]="'UserType'" [(ngModel)]="bookModel.UserId" [ngModelOptions]="{standalone: true}"
-                      [selectedValuePath]="'Id'" style="width: 205px; padding: 3px; margin-left: 420px;">
-                    </wj-combo-box>
+                    
                   </form>
             </div>
           </div>
@@ -155,10 +162,6 @@
                   </wj-input-date>
                   <label for="email">ISBN</label>
                   <input type="text" class="form-control" [(ngModel)]="bookModel.ISBN" [ngModelOptions]="{standalone: true}">
-                  <wj-combo-box #cboUserId 
-                    [itemsSource]="cboUserIdObservableArray" [displayMemberPath]="'UserType'" [(ngModel)]="bookModel.UserId" [ngModelOptions]="{standalone: true}"
-                    [selectedValuePath]="'Id'" style="width: 205px; padding: 3px; margin-left: 420px;">
-                  </wj-combo-box>
                 </form>
           </div>
         </div>
